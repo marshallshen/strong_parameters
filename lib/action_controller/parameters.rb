@@ -239,6 +239,9 @@ module ActionController
       rescue_from(ActionController::ParameterMissing) do |parameter_missing_exception|
         render :text => "Required parameter missing: #{parameter_missing_exception.param}", :status => :bad_request
       end
+      rescue_from(ActionController::UnpermittedParameters) do |parameter_unpermitted_exception|
+        render :text => "Unpermitted parameter: #{parameter_unpermitted_exception}", :status => :bad_request
+      end
     end
 
     def params
